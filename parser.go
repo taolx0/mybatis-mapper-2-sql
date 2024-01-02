@@ -112,7 +112,7 @@ func parse(d *xml.Decoder) (node ast.Node, err error) {
 			switch st.Name.Local {
 			case "mapper":
 				return parseMyBatis(d, &st)
-			case "sqlMap":
+			case "sqlMap", "sqls":
 				return parseIBatis(d, &st)
 			}
 		}
@@ -261,7 +261,7 @@ func parseIBatis(d *xml.Decoder, start *xml.StartElement) (node ast.Node, err er
 func scanIBatis(start *xml.StartElement) (ast.Node, error) {
 	var node ast.Node
 	switch start.Name.Local {
-	case "sqlMap":
+	case "sqlMap", "sqls":
 		node = ast.NewMapper()
 	case "sql":
 		node = ast.NewSqlNode()
