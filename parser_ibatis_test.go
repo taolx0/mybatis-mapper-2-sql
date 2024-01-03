@@ -1,6 +1,30 @@
 package parser
 
-import "testing"
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+	"testing"
+)
+
+func TestIbatis2(t *testing.T) {
+	xmlFile, err := os.Open("/Users/taolongxiang/Desktop/Bc_nsql.xml")
+	//xmlFile, err := os.Open("/Users/taolongxiang/IdeaProjects/apm-api/src/main/resources/mapping/BusiSysMapper.xml")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	defer xmlFile.Close()
+
+	data, _ := ioutil.ReadAll(xmlFile)
+
+	sql, err := ParseXML(string(data))
+	if err != nil {
+		panic(err)
+	}
+
+	println(sql)
+}
 
 func TestIbatis(t *testing.T) {
 	testParser(t, `<?xml version="1.0" encoding="UTF-8"?>
