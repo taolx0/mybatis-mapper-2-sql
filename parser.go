@@ -263,7 +263,7 @@ func scanIBatis(start *xml.StartElement) (ast.Node, error) {
 	switch start.Name.Local {
 	case "sqlMap", "sqls":
 		node = ast.NewMapper()
-	case "sql":
+	case "sql", "dynamicSql":
 		node = ast.NewSqlNode()
 	case "include":
 		node = ast.NewIncludeNode()
@@ -272,7 +272,7 @@ func scanIBatis(start *xml.StartElement) (ast.Node, error) {
 	case "isEqual", "isNotEqual", "isGreaterThan", "isGreaterEqual", "isLessEqual",
 		"isPropertyAvailable", "isNotPropertyAvailable", "isNull", "isNotNull", "isEmpty", "isNotEmpty":
 		node = ast.NewConditionStmt()
-	case "dynamic":
+	case "dynamic", "dynamicUpdate", "dynamicInsert", "dynamicSelect", "dynamicDelete":
 		node = ast.NewDynamicStmt()
 	case "iterate":
 		node = ast.NewIterateStmt()
