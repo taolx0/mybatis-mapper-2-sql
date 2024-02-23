@@ -5,7 +5,7 @@ import "testing"
 func TestReplaceWhere(t *testing.T) {
 
 	cases := []struct {
-		input string
+		input  string
 		expect string
 	}{
 		{
@@ -49,8 +49,8 @@ func TestReplaceWhere(t *testing.T) {
 			"AND\nabc",
 		},
 	}
-	for _,c :=range cases {
-		if actual:= replaceWhere(c.input); actual != c.expect {
+	for _, c := range cases {
+		if actual := replaceWhere(c.input); actual != c.expect {
 			t.Errorf("test replaceWhere failed, input: %s, expect: %s, actual: %s\n", c.input, c.expect, actual)
 		}
 	}
